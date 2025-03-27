@@ -43,7 +43,7 @@ const ClientsSection = () => {
           ref={sectionRef}
           className="text-center reveal-on-scroll"
         >
-          <p className="text-gray-500 mb-8">Trusted by businesses worldwide</p>
+          <p className="text-gray-500 mb-8">Trusted by retail businesses worldwide</p>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {clients.map((client, index) => (

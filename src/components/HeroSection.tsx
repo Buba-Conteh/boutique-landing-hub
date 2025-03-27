@@ -68,60 +68,11 @@ const HeroSection = () => {
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-boutique-blue-light rounded-full opacity-20 blur-3xl"></div>
               
               <div className="glass-card p-4 sm:p-6 relative z-10 animate-float">
-                <div className="bg-boutique-blue-dark rounded-lg p-3 text-white flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <BarChart2 className="h-5 w-5 mr-2" />
-                    <span className="font-medium">Sales Dashboard</span>
-                  </div>
-                  <div className="flex space-x-1">
-                    <div className="h-2 w-2 rounded-full bg-red-400"></div>
-                    <div className="h-2 w-2 rounded-full bg-yellow-400"></div>
-                    <div className="h-2 w-2 rounded-full bg-green-400"></div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <p className="text-sm text-gray-500 mb-1">Total Sales</p>
-                    <p className="text-2xl font-bold text-gray-900">$24,582</p>
-                    <p className="text-xs text-green-500 flex items-center mt-1">
-                      <span className="inline-block mr-1">↑</span> 12.5% from last month
-                    </p>
-                  </div>
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
-                    <p className="text-sm text-gray-500 mb-1">Inventory Value</p>
-                    <p className="text-2xl font-bold text-gray-900">$56,271</p>
-                    <p className="text-xs text-blue-500 flex items-center mt-1">
-                      <span className="inline-block mr-1">•</span> 432 unique items
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="bg-white p-4 rounded-lg shadow-sm">
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="font-medium text-gray-700">Sales Trend</h3>
-                    <div className="text-xs text-gray-500">Last 7 days</div>
-                  </div>
-                  <div className="h-32 flex items-end justify-between space-x-2">
-                    {[65, 45, 75, 55, 80, 62, 90].map((height, index) => (
-                      <div key={index} className="relative flex-1 flex items-end">
-                        <div 
-                          className="w-full bg-boutique-blue rounded-t-sm transition-all duration-500"
-                          style={{ height: `${height}%` }}
-                        ></div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-2 text-xs text-gray-400">
-                    <span>Mon</span>
-                    <span>Tue</span>
-                    <span>Wed</span>
-                    <span>Thu</span>
-                    <span>Fri</span>
-                    <span>Sat</span>
-                    <span>Sun</span>
-                  </div>
-                </div>
+                <img 
+                  src="/lovable-uploads/c4b624ed-7235-462c-af66-fcc7e939ecff.png" 
+                  alt="Boutique Dashboard Interface" 
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
               </div>
             </div>
           </div>

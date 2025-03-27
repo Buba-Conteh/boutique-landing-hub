@@ -106,14 +106,17 @@ const FeaturesSection = () => {
   ];
 
   const headingRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          entries[0].target.classList.add('active');
-          observer.unobserve(entries[0].target);
-        }
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
       },
       { threshold: 0.1 }
     );
@@ -122,15 +125,22 @@ const FeaturesSection = () => {
       observer.observe(headingRef.current);
     }
 
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
     return () => {
       if (headingRef.current) {
         observer.unobserve(headingRef.current);
+      }
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
       }
     };
   }, []);
 
   return (
-    <section id="features" className="section bg-white">
+    <section id="features" className="section bg-white py-16 lg:py-24">
       <div className="container-custom">
         <div 
           ref={headingRef}
@@ -142,6 +152,18 @@ const FeaturesSection = () => {
             Boutique ERP provides all the tools you need to streamline operations, 
             increase efficiency, and grow your business.
           </p>
+        </div>
+
+        <div 
+          ref={imageRef}
+          className="mb-16 reveal-on-scroll p-4 bg-white rounded-xl shadow-soft max-w-4xl mx-auto"
+        >
+          <img 
+            src="/lovable-uploads/b262a75b-1da6-4958-8cf1-36263b83cbd5.png" 
+            alt="Boutique POS Terminal Interface" 
+            className="w-full h-auto rounded-lg border border-gray-100"
+          />
+          <p className="text-center text-sm text-gray-500 mt-3">The intuitive POS interface makes checkout simple and efficient</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">

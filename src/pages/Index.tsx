@@ -46,6 +46,7 @@ const Index = () => {
       });
     });
 
+    // Cleanup
     return () => {
       document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
         observer.unobserve(el);
