@@ -69,7 +69,7 @@ const HeroSection = () => {
               
               <div className="glass-card p-4 sm:p-6 relative z-10 animate-float">
                 <img 
-                  src="/lovable-uploads/c4b624ed-7235-462c-af66-fcc7e939ecff.png" 
+                  src="/lovable-uploads/9dbb6184-40f6-4338-bdf2-3d8321c39985.png" 
                   alt="Boutique Dashboard Interface" 
                   className="w-full h-auto rounded-lg shadow-lg"
                 />
