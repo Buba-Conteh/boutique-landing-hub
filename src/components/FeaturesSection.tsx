@@ -1,8 +1,9 @@
 
 import React, { useEffect, useRef } from 'react';
+import { Button } from "@/components/ui/button";
 import { 
   ShoppingCart, Package, CreditCard, BarChart2, 
-  Users, Database, Store, Factory, DollarSign, Settings
+  Users, Database, Store, Factory, DollarSign, Settings, ChevronRight
 } from 'lucide-react';
 
 interface FeatureCardProps {
@@ -107,6 +108,7 @@ const FeaturesSection = () => {
 
   const headingRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -121,21 +123,18 @@ const FeaturesSection = () => {
       { threshold: 0.1 }
     );
 
-    if (headingRef.current) {
-      observer.observe(headingRef.current);
-    }
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
-    }
+    [headingRef, imageRef, ctaRef].forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
 
     return () => {
-      if (headingRef.current) {
-        observer.unobserve(headingRef.current);
-      }
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
+      [headingRef, imageRef, ctaRef].forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
     };
   }, []);
 
@@ -166,7 +165,7 @@ const FeaturesSection = () => {
           <p className="text-center text-sm text-gray-500 mt-3">The intuitive POS interface makes checkout simple and efficient</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8 mb-16">
           {features.map((feature, index) => (
             <FeatureCard 
               key={index}
@@ -176,6 +175,19 @@ const FeaturesSection = () => {
               delay={(index % 5) + 1}
             />
           ))}
+        </div>
+        
+        <div 
+          ref={ctaRef}
+          className="text-center reveal-on-scroll"
+        >
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="border-gray-200 hover:bg-gray-50 text-gray-700 font-medium px-8 py-3 h-auto"
+          >
+            Explore All Features <ChevronRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

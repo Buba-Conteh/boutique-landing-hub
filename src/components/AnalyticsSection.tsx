@@ -1,5 +1,8 @@
 
 import React, { useEffect, useRef } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const AnalyticsSection = () => {
@@ -12,6 +15,17 @@ const AnalyticsSection = () => {
     { name: 'Jun', Sales: 2390, Inventory: 3800 },
     { name: 'Jul', Sales: 3490, Inventory: 4300 },
   ];
+
+  const chartConfig = {
+    Sales: {
+      color: "#3B82F6",
+      label: "Sales",
+    },
+    Inventory: {
+      color: "#8B5CF6",
+      label: "Inventory",
+    },
+  };
 
   const statsItems = [
     { value: '400+', label: 'Businesses improved' },
@@ -84,38 +98,73 @@ const AnalyticsSection = () => {
           ref={chartRef}
           className="mb-20 reveal-on-scroll"
         >
-          <div className="bg-white rounded-xl shadow-card p-6 border border-gray-100">
-            <h3 className="font-medium text-gray-800 mb-4">Sales & Inventory Overview</h3>
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                  data={data}
-                  margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                  <XAxis dataKey="name" tickLine={false} axisLine={false} />
-                  <YAxis tickLine={false} axisLine={false} />
-                  <Tooltip />
-                  <Area
-                    type="monotone"
-                    dataKey="Sales"
-                    stackId="1"
-                    stroke="#3B82F6"
-                    fill="#3B82F6"
-                    fillOpacity={0.6}
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="Inventory"
-                    stackId="2"
-                    stroke="#8B5CF6"
-                    fill="#8B5CF6"
-                    fillOpacity={0.6}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          <Card className="border-gray-100 shadow-card overflow-hidden">
+            <CardHeader className="bg-white border-b border-gray-100 px-6 py-5">
+              <CardTitle className="text-lg font-medium text-gray-800">Sales & Inventory Overview</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="p-6 pt-4">
+                <div className="h-80">
+                  <ChartContainer config={chartConfig} className="h-full">
+                    <AreaChart
+                      data={data}
+                      margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                    >
+                      <defs>
+                        <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#3B82F6" stopOpacity={0.1}/>
+                        </linearGradient>
+                        <linearGradient id="colorInventory" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.1}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                      <XAxis 
+                        dataKey="name" 
+                        tickLine={false} 
+                        axisLine={false}
+                        tick={{ fill: '#6B7280', fontSize: 12 }}
+                        dy={10}
+                      />
+                      <YAxis 
+                        tickLine={false} 
+                        axisLine={false} 
+                        tick={{ fill: '#6B7280', fontSize: 12 }}
+                        dx={-10}
+                      />
+                      <ChartTooltip 
+                        content={({active, payload, label}) => (
+                          <ChartTooltipContent active={active} payload={payload} label={label} />
+                        )}
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="Sales"
+                        stroke="#3B82F6"
+                        fillOpacity={1}
+                        fill="url(#colorSales)"
+                        activeDot={{ r: 6, strokeWidth: 0 }}
+                        isAnimationActive={true}
+                        animationDuration={1000}
+                      />
+                      <Area
+                        type="monotone"
+                        dataKey="Inventory"
+                        stroke="#8B5CF6"
+                        fillOpacity={1}
+                        fill="url(#colorInventory)"
+                        activeDot={{ r: 6, strokeWidth: 0 }}
+                        isAnimationActive={true}
+                        animationDuration={1000}
+                      />
+                    </AreaChart>
+                  </ChartContainer>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
