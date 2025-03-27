@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { 
   ShoppingCart, Package, CreditCard, BarChart2, 
@@ -53,6 +53,8 @@ const FeatureCard = ({ icon, title, description, delay }: FeatureCardProps) => {
 };
 
 const FeaturesSection = () => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
+  
   const features = [
     {
       icon: <Database size={24} />,
@@ -105,6 +107,8 @@ const FeaturesSection = () => {
       description: "Customize the system to match your specific business needs."
     }
   ];
+
+  const visibleFeatures = showAllFeatures ? features : features.slice(0, 9);
 
   const headingRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -166,7 +170,7 @@ const FeaturesSection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8 mb-16">
-          {features.map((feature, index) => (
+          {visibleFeatures.map((feature, index) => (
             <FeatureCard 
               key={index}
               icon={feature.icon}
@@ -185,8 +189,9 @@ const FeaturesSection = () => {
             variant="outline" 
             size="lg" 
             className="border-gray-200 hover:bg-gray-50 text-gray-700 font-medium px-8 py-3 h-auto"
+            onClick={() => setShowAllFeatures(!showAllFeatures)}
           >
-            Explore All Features <ChevronRight className="ml-2 h-5 w-5" />
+            {showAllFeatures ? "Show Less" : "Explore All Features"} <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </div>

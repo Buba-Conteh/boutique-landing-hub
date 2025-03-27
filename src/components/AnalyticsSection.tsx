@@ -96,19 +96,19 @@ const AnalyticsSection = () => {
         
         <div 
           ref={chartRef}
-          className="mb-20 reveal-on-scroll"
+          className="mb-20 reveal-on-scroll w-full"
         >
-          <Card className="border-gray-100 shadow-card overflow-hidden">
+          <Card className="border-gray-100 shadow-card overflow-hidden w-full">
             <CardHeader className="bg-white border-b border-gray-100 px-6 py-5">
               <CardTitle className="text-lg font-medium text-gray-800">Sales & Inventory Overview</CardTitle>
             </CardHeader>
-            <CardContent className="p-0">
-              <div className="p-6 pt-4">
-                <div className="h-80">
-                  <ChartContainer config={chartConfig} className="h-full">
+            <CardContent className="p-0 w-full">
+              <div className="p-6 pt-4 w-full">
+                <div className="h-80 w-full">
+                  <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                       data={data}
-                      margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+                      margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
                     >
                       <defs>
                         <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
@@ -160,7 +160,7 @@ const AnalyticsSection = () => {
                         animationDuration={1000}
                       />
                     </AreaChart>
-                  </ChartContainer>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </CardContent>
